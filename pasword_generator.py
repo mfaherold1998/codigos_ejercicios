@@ -17,3 +17,38 @@ https://www.youtube.com/watch?v=mYe-Ju8-D3o&list=PL_wRgp7nihybbJ2vZaVGI5TDdPaK_d
 
 '''
 
+import random
+from werkzeug.security import generate_password_hash
+
+minus = 'abcdefghijklmnopqrstuvwxyz'
+mayus = minus.upper()
+numeros = '0123456789'
+simbolos = '@[]{}*-/_+,;?!.$>#<%='
+
+base = minus+mayus+numeros+simbolos
+longitud = 12
+
+for _ in range(10):
+    muestra = random.sample(base,12)
+    pasword = "".join(muestra)
+    pasword_encriptada = generate_password_hash(pasword)
+    print("{} => {}".format(pasword, pasword_encriptada))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -290,19 +290,78 @@ while True :
 | 1. Generar contraseñas aleatorias.                      |
 | 2. Generar contraseñas seguras aleatorias               |
 | 3. Generar contraseñas aleatorias a partir de una frase |
-| 4. Salir                                                |
+| 4. Leer documentacion de los generadores                |
+| 5. Salir                                                |
  ---------------------------------------------------------                                          
 """))
-    if saludo not in ([1,2,3,4]):
+    if saludo not in ([1,2,3,4,5]):
         print("Opción no válida, por favor elija una opción válida")
         input()
     elif saludo == 1 :
-        pass
+        os.system('cls')
+        res = input("""Con este generador puedes crear una o varias contraseñas aleatorias de 8 caracteres entre los que se incluyen letras en mayuscula, minuscula, numeros y simbolos. Desea crear contraseñas con estas caracteristicas?(yes/no): _
+""")
+        if res.lower() == 'yes':
+            cantidad = input('Indique la cantidad de contraseñas a generar: _')
+            generator = random_password_generator()
+            passwords = generator.generate_random_pasword(int(cantidad))
+            print ('Sus contraseñas son: ')
+            for p in passwords:
+                print(p.getText())
+            input('Desea guardarlas en un fichero a parte?(yes/no):_')
+            if res.lower() == 'yes':
+                name = input('Indique el nombre del fichero: _')
+                encriptadas = generator.encriptar_pasword(passwords)
+                with open(name + '.txt', 'w') as f:
+                    for p in encriptadas.keys():
+                        f.write('password: {} => {}\n'.format(p,encriptadas[p]))
+            input('Todas las contraseñas se han guardado en su version original y encriptadas...')
+            
+        else:
+            longitud = input('Indique la longitud de las contraseñas a generar: _')
+            minus = input('Inclir letras minusculas? (yes/no): _')
+            if minus == 'no':
+                minus = False
+            else:
+                minus = True
+            mayus = input('Incluir letras mayusculas? (yes/no): _')
+            if mayus == 'no':
+                mayus = False
+            else:
+                mayus = True
+            numeros = input('Incluir numeros? (yes/no): _')
+            if numeros == 'no':
+                numeros = False
+            else:
+                numeros = True            
+            simbolos = input('Incluir simbolos? (yes/no): _')
+            if simbolos == 'no':
+                simbolos = False
+            else:
+                simbolos = True
+            cantidad = input('Indique la cantidad de contraseñas a generar: _')
+            generator = random_password_generator(int(longitud), mayus, minus, numeros, simbolos)
+            passwords = generator.generate_random_pasword(int(cantidad))
+            print ('Sus contraseñas son: ')
+            for p in passwords:
+                print(p.getText())
+            input('Desea guardarlas en un fichero a parte?(yes/no):_')
+            if res.lower() == 'yes':
+                name = input('Indique el nombre del fichero: _')
+                encriptadas = generator.encriptar_pasword(passwords)
+                with open(name + '.txt', 'w') as f:
+                    for p in encriptadas.keys():
+                        f.write('password: {} => {}\n'.format(p,encriptadas[p]))
+            input('Todas las contraseñas se han guardado en su version original y encriptadas...')
+
+
     elif saludo == 2:
         pass
     elif saludo == 3:
         pass
     elif saludo == 4:
+        pass
+    elif saludo == 5:
         os.system('cls')
         print("""
                 +---------------------+

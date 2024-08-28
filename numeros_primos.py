@@ -5,5 +5,3 @@ def divisores (a):
 
 def numeros_primos (a):
     return len(divisores(a)) == 2;
-
-lqqjwndicvbfei

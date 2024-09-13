@@ -25,3 +25,8 @@ print(sentence) #Output: Nanda is 25 and is from Bogota
 text = 'Hello world'
 sentence = f'The length of the text is {len(text)} characteres'
 print(sentence) #Output: The length of the text is 11 characteres
+
+
+name = "Jane"
+age = 25
+"Hello, {}! You're {} years old.".format(name, age)
